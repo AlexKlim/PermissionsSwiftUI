@@ -30,7 +30,7 @@ struct AllowButtonSection: View {
 
     var body: some View {
         Button(action: action, label: {
-            Text(LocalizedStringKey(buttonText), bundle: .module)
+            Text(LocalizedStringKey(buttonText))
                 .fontWeight(.bold)
                 .buttonStatusColor(for: allowButtonStatus)
         })
