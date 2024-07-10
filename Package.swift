@@ -22,7 +22,7 @@ let permissionsTargets: [Target] = [
     ),
     .target(
         name: "PermissionsSwiftUICalendar",
-        dependencies: ["Introspect", "CorePermissionsSwiftUI"],
+        dependencies: ["Introspect", "CorePermissionsSwiftUI", "PermissionsSwiftUIEvent"],
         exclude: ["../../Tests/PermissionsSwiftUITests/__Snapshots__"]
     ),
     .target(
@@ -92,7 +92,7 @@ let permissionsTargets: [Target] = [
     ),
     .target(
         name: "PermissionsSwiftUIReminder",
-        dependencies: ["Introspect", "CorePermissionsSwiftUI"],
+        dependencies: ["Introspect", "CorePermissionsSwiftUI", "PermissionsSwiftUIEvent"],
         exclude: ["../../Tests/PermissionsSwiftUITests/__Snapshots__"]
     ),
     .target(
@@ -105,14 +105,26 @@ let permissionsTargets: [Target] = [
         dependencies: ["Introspect", .target(name: "CorePermissionsSwiftUI")],
         exclude: ["../../Tests/PermissionsSwiftUITests/__Snapshots__"]
     ),
-    .target(name: "PermissionsSwiftUISiri",
-            dependencies: ["Introspect", "CorePermissionsSwiftUI"],
-            exclude: ["../../Tests/PermissionsSwiftUITests/__Snapshots__"])]
+    .target(
+        name: "PermissionsSwiftUISiri",
+        dependencies: ["Introspect", "CorePermissionsSwiftUI"],
+        exclude: ["../../Tests/PermissionsSwiftUITests/__Snapshots__"]
+    ),
+    .target(
+        name: "PermissionsSwiftUIBiometrics",
+        dependencies: ["Introspect", .target(name: "CorePermissionsSwiftUI")],
+        exclude: ["../../Tsts/PermissionsSwiftUITests/__Snapshots__"]
+    ),
+    .target(
+        name: "PermissionsSwiftUIEvent",
+        dependencies: ["Introspect", .target(name: "CorePermissionsSwiftUI")],
+        exclude: ["../../Tsts/PermissionsSwiftUITests/__Snapshots__"]
+    )]
 
 let package = Package(
     name: "PermissionsSwiftUI",
     defaultLocalization: "en",
-    platforms: [.iOS(.v11)],
+    platforms: [.iOS(.v13), .macOS(.v10_15)],
     products: permissionsTargets.map{Product.library(name: $0.name, targets: [$0.name])},
     dependencies: [
         // Dependencies declare other packages that this package depends on.
